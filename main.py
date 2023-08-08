@@ -42,7 +42,7 @@ class Config:
     LEARNING_RATE = 0.0001
     # WEIGHT_DECAY = 0.01
 
-    DEVICE = torch.device("mps")
+    DEVICE = torch.device("cpu") # We are running this on Google Cloud Run which supports CPU
 
     # Rewards
     REWARD_WIN = 1

@@ -1,0 +1,3 @@
+gcloud builds submit --config cloudbuilds.yaml .
+
+gcloud run deploy connect4-app-service --image gcr.io/connect4-deep-q-network/connect4-app-image --platform managed
