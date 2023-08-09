@@ -113,7 +113,7 @@ class Trainer:
 
             winner = self.play_game(enemy_index, first_player)
 
-            # Track stats for eval and decide reward
+            # Track stats for evaluation
             if winner == 'agent':
                 self.agent_results_vs_enemies[enemy_index]['wins'] += 1
             elif winner == 'enemy':
@@ -132,7 +132,7 @@ class Trainer:
                 self.agent.update_target_network()
 
             # Hold torunament
-            if episode > 0 and episode % self.config.TOURNAMENT_FREQUENCY == 0 and len(self.all_past_enemies) >= self.config.TOURNAMENT_MIN_TOTAL_ENEMIES:
+            if episode > 0 and episode % self.config.TOURNAMENT_FREQUENCY == 0 and len(self.all_past_enemies) >= self.config.TOURNAMENT_MIN_TOTAL_ENEMIES and self.config.TOURNAMENT_ENABLED:
                 # randomly select past enemies and hold tournament
                 count_enemies = self.config.TOURNAMENT_COUNT_ENEMIES if len(self.all_past_enemies) >= self.config.TOURNAMENT_COUNT_ENEMIES else len(self.all_past_enemies)
                 tournament_enemies = random.sample(self.all_past_enemies, count_enemies)
@@ -161,9 +161,11 @@ class Trainer:
                 # Check if agent is good enough
                 if all(result['wins'] >= result['losses'] for result in self.agent_results_vs_enemies):
                     self.enemies = self.enemies[1:] + [copy.deepcopy(self.agent)]
-                    self.all_past_enemies.append(copy.deepcopy(self.agent))
                     print(f"\n*** Evaluation successful! ***")
-                    print(f"Total number of enemies: {len(self.all_past_enemies)}\n")
+                    # Keep track of all past enemies for tournament
+                    if self.config.TOURNAMENT_ENABLED: 
+                        self.all_past_enemies.append(copy.deepcopy(self.agent))
+                        print(f"Total number of enemies: {len(self.all_past_enemies)}\n")
                 # Reset stats
                 self.agent_results_vs_enemies = [{'wins': 0, 'losses': 0, 'draws': 0} for _ in range(self.config.NUM_ENEMIES)]
                 self.agent_moved_first_vs_enemies = [0 for _ in range(self.config.NUM_ENEMIES)]

@@ -27,8 +27,8 @@ def run_simulation(agent, config, agent_moves_first=True):
         winner = None
         moves_count = 0  # track moves for this game
         while not winner:
-            moves_count += 1  # increment the moves count for every loop
-            if game.player == 'agent':  # Agent's turn
+            moves_count += 1
+            if game.player == 'agent':
                 action = agent.get_action(game.board, 0.0)
                 if action not in game.get_valid_actions():
                     invalid_moves += 1
@@ -44,7 +44,7 @@ def run_simulation(agent, config, agent_moves_first=True):
 
         total_moves += moves_count
 
-    avg_moves_per_game = total_moves / EPISODES if EPISODES else 0  # calculate average moves per game
+    avg_moves_per_game = total_moves / EPISODES if EPISODES else 0
     return wins / EPISODES, invalid_moves / EPISODES, avg_moves_per_game
 
 def run_simulations():

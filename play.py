@@ -35,9 +35,7 @@ def play_game(mode):
     config = Config()
     env = Connect4(config=config)
     agent = DQNAgent(config)
-    # agent.dqn_net.load_state_dict(torch.load(latest_model_path))
-    episode = 8000
-    agent.dqn_net.load_state_dict(torch.load(f'./agents/model_{episode}.pt'))
+    agent.dqn_net.load_state_dict(torch.load(latest_model_path))
 
     if mode in ["me1", "me2"]:
         if mode == "me1":

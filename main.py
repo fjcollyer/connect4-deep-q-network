@@ -8,7 +8,7 @@ import torch
 from train import Trainer
 
 class Config:
-    EPISODES = 10000
+    EPISODES = 100000
     SAVE_MODEL_FREQUENCY = 2000
     SAVE_FOLDER = './agents/'
 
@@ -28,6 +28,7 @@ class Config:
     NUM_ENEMIES = 4
 
     # Tournament - currently not used
+    TOURNAMENT_ENABLED = False
     TOURNAMENT_FREQUENCY = 10000000000 # Huge number to disable tournament
     TOURNAMENT_EPSILON = 0
     TOURNAMENT_GAMES = 100
