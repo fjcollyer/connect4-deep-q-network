@@ -172,7 +172,7 @@ class Trainer:
                 self.total_moves = 0
 
             # Save model
-            if episode > 0 and episode % self.config.SAVE_MODEL_FREQUENCY == 0:
+            if episode % self.config.SAVE_MODEL_FREQUENCY == 0:
                 torch.save(self.agent.dqn_net.state_dict(), self.config.SAVE_FOLDER + f"model_{episode}.pt")
 
             # Decay epsilon

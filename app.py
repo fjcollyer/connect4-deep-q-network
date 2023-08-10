@@ -13,7 +13,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": ALLOWED_ORIGIN}})
 
 # Loading the trained model
-MODEL_PATH = "./agents/model_99999.pt"
+MODEL_PATH = "./agents/model_299999.pt"
 
 agent = None  # this will hold our DQNAgent once loaded
 config = Config()

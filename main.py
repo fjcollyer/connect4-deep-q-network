@@ -8,8 +8,8 @@ import torch
 from train import Trainer
 
 class Config:
-    EPISODES = 100000
-    SAVE_MODEL_FREQUENCY = 2000
+    EPISODES = 300000
+    SAVE_MODEL_FREQUENCY = 5000
     SAVE_FOLDER = './agents/'
 
     # Epsilon
